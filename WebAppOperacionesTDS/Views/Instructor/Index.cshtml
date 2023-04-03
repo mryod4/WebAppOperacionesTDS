@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebAppOperacionesTDS.Models.Instructor>
+
+    <h1> Listado de Instructores</h1>
+    <br />
+    <form>
+        <div class = "row">
+
+            <div class="col-3">
+            <input class="form-control" name="FilterByName" placeholder="Ingresar Nombre" />
+
+            </div>
+
+            <div class="col-4">
+                <button class ="btn btn-primary">Buscar</button>
+            </div>
+
+            <div class="col-5">
+            </div>
+
+        </div>
+    </form>
+
+    <br />
+
+    <table class="table" table-horver table-bordered>
+        <thead>
+            <tr class="table-warning">
+                <th>
+                    <center><strong>ID</strong></center>
+                </th>
+
+                <th>
+                    <center><strong>Nombres</strong></center>
+                </th>
+
+                <th>
+                    <center><strong>Apellidos</strong></center>
+                </th>
+
+                <th>
+                    <center><strong>DNI</strong></center>
+                </th>
+
+                <th>
+                    <center><strong>EDAD</strong></center>
+                </th>
+
+                <th>
+                    <center><strong>Especialidad</strong></center>
+                </th>
+                
+                <th>
+                    <center><strong>Estado</strong></center>
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+             @foreach(var datos in Model)
+             {
+                 <tr>
+                     <td><center>@datos.Idinstructor</center> </td>
+                    <td><center>@datos.Nombres</center> </td>
+                    <td><center>@datos.Apellidos</center> </td>
+                    <td><center>@datos.DNI</center> </td>
+                    <td><center>@datos.EDAD</center> </td>
+                    <td><center>@datos.Especialidad</center> </td>
+                    <td><center>@datos.Estado</center> </td>
+
+                 </tr>
+             }
+        </tbody>
+
+
+
+
+
+
+    </table>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DBOperacion</DataSourceReference>
+      <CommandText>SELECT        Operacion.IdOperacion, Lugar.NombreLugar, Cliente.RazonSocial, Servicio.NombreServicio, Operacion.FechaRegistro, Operacion.Precio, Operacion.FechaModificacion
+FROM            Cliente INNER JOIN
+                         Operacion ON Cliente.IdCliente = Operacion.IdCliente INNER JOIN
+                         Lugar ON Operacion.IdLugar = Lugar.IdLugar INNER JOIN
+                         Servicio ON Operacion.IdServicio = Servicio.IdServicio</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="IdOperacion">
+        <DataField>IdOperacion</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="NombreLugar">
+        <DataField>NombreLugar</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RazonSocial">
+        <DataField>RazonSocial</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NombreServicio">
+        <DataField>NombreServicio</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="FechaRegistro">
+        <DataField>FechaRegistro</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="Precio">
+        <DataField>Precio</DataField>
+        <rd:TypeName>System.Single</rd:TypeName>
+      </Field>
+      <Field Name="FechaModificacion">
+        <DataField>FechaModificacion</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

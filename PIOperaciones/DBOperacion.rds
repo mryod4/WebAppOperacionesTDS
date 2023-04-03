@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="DBOperacion">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=HOSTCLIENTE4;Initial Catalog=DBOperacion2022-IITDS</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>93a398ed-6f01-4a0c-b6ce-537333623b3e</DataSourceID>
+</RptDataSource>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebAppOperacionesTDS.Models.Operacion>
+@inject IAuthorizationService AuthorizationService
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+    
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="car card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span class="text-dark">
+                            <i class="nav-icon fas fa-list" arial-hidden="true"></i>
+                            </span>
+                            LISTADO DE OPERACIONES
+                        </h3>
+                        <div class="card-tools">
+                            @*Redireccionamiento para la pagina de reportes*@
+                            <a class="btn btn-info btn-sm" role="button" href="http://hostcliente4:500/ReportServer/Pages/ReportViewer.aspx?%2fPIOperaciones%2fRptOperacion&rs:Command=Render">
+                                <i class="fa fa-signal text-white" aria-hidden="true"></i></a>
+
+
+                            <a class="btn btn-info btn-sm" role="button" asp-action="ServiceIndex"><i class="fa fa-server text-white" aria-hidden="true"></i></a>
+
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayaoutAnalista")).Succeeded)
+                            {
+                                <a class="btn btn-success btn-sm" role="button" asp-action="Create"><i class="fa fa-plus text-white" aria-hidden="true"></i></a>
+            
+                             }
+            
+       
+                    </div>
+                    </div>
+                    @* </div>*@
+        
+  <div class="card-body">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th><center><strong>Id</strong></center></th>
+                <th><center><strong>Cliente</strong></center></th>
+                <th><center><strong>Lugar</strong></center></th>
+                <th><center><strong>servicio</strong></center></th>
+                <th><center><strong>Precio</strong></center></th>
+                <th><center><strong>Registro</strong></center></th>
+                <th><center><strong>Modificación</strong></center></th>
+                <th><center><strong>Opciones</strong></center></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td align="center">@item.IdOperacion</td>
+                <td align="center">@item.Cliente.RazonSocial</td>
+                <td align="center">@item.Lugar.NombreLugar</td>
+                <td align="center">@item.Servicio.NombreServicio</td>
+                <td align="center">@item.Precio</td>
+                <td align="center">@item.FechaRegistro</td>
+                <td align="center">@item.FechaModificacion</td>
+                <td align="center">
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayaoutAnalista")).Succeeded)
+                    {
+                                                <a class="btn btn-primary btn-sm" role="button" asp-route-id="@item.IdOperacion" asp-action="Edit"><i class="far fa-edit text-white" aria-hidden="true"></i></a>
+                    }
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayaoutJefeAnalista")).Succeeded)
+                    {
+                                                <a class="btn btn-warning btn-sm text-white" role="button" asp-route-id="@item.IdOperacion" asp-action="Details"><i class="fa fa-eye text-white" aria-hidden="true"></i></a>
+                    }
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayaoutAnalista")).Succeeded)
+                    {
+                                                <a class="btn btn-danger btn-sm" role="button" asp-route-id="@item.IdOperacion" asp-action="Delete"><i class="fa fa-trash text-white" aria-hidden="true"></i></a>
+                    }
+
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayaoutJefe")).Succeeded)
+                    {
+                        <a class="btn btn-info btn-sm" role="button">Aprobar</a>
+                    }
+                    
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    </div>
+    <div class="card card-header">
+        <h3 class="card-title">
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index","Operacion",new {page=page}),X.PagedList.Web.Common.PagedListRenderOptions.MinimalWithItemCountText)
+        </h3>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
